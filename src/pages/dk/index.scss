@@ -1,0 +1,173 @@
+@import './lib/common.scss';
+html,
+body,
+div,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+input, button, select, textarea {
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  border:0;
+  padding: 0;
+}
+
+textarea{
+  resize:none;
+}
+
+html {
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  box-sizing: border-box;
+  background: #465CE2;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+  color: #fff;
+  .content{
+    flex: 1;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: size(30);
+    .banner{
+      height: size(645);
+      display: block;
+    }
+    .buy-wrapper{
+      display: flex;
+      margin-bottom: size(48);
+      .dk-cover{
+        flex: 0 0 auto;
+        margin: 0 size(20);
+        width: size(263);
+        height: size(241);
+      }
+      .buy-content{
+        flex: 1;
+        margin-right: size(20);
+        > * {
+          line-height: 1;
+          color: #F6F6F6;
+        }
+        > h4{
+          font-size: size(38);
+          color: #42BAFF;
+        }
+        .ad{
+          font-size: size(26);
+          margin: size(14) 0 size(18);
+        }
+        .price{
+          display: flex;
+          font-size: 0;
+          .price-ad{
+            flex: 0 0 auto;
+            > span{
+              font-size: size(24);
+              line-height: size(30);
+              display: block;
+              width: 7em;
+            }
+            .old-price{
+              margin-bottom: size(10);
+              text-decoration: line-through;
+            }
+          }
+          .price-detail{
+            flex: 1;
+            font-size: size(30);
+            strong{
+              font-size: size(68);
+            }
+          }
+        }
+        .buy-button-small{
+          display: block;
+          width: size(376);
+          height: size(64);
+          margin-top: size(14);
+          line-height: size(64);
+          font-size: size(34);
+          color: #fff;
+          background: -webkit-linear-gradient(top, #F86A9A, #F80D4E);
+        }
+      }
+    }
+    > img {
+      display: block;
+      border: 0;
+      margin: -1px 0 0;
+    }
+    .tel-content {
+      margin: size(30) size(32) size(64);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      line-height: size(60);
+      font-size: size(34);
+      .tels-no {
+        color: #F26FA8;
+      }
+      .tels-img {
+        width: size(128);
+        height: size(60);
+        line-height: size(60);
+        text-align: center;
+        font-size: size(28);
+        color: #FDFBF9;
+        background-color: #F26FA8;
+        border-radius: size(30);
+      }
+    }
+    .instruction{
+      color: #8495FC;
+      font-size: size(24);
+      line-height: size(34);
+      margin: 0 size(32);
+    }
+  }
+  .buy-button-big{
+    display: block;
+    flex: 0 0 auto;
+    height: size(90);
+    margin: 0 size(27);
+    margin-bottom: size(30);
+    background: -webkit-linear-gradient(right, #F36FA9, #EEBD95);
+    font-size: size(34);
+    line-height: size(90);
+    text-align: center;
+    color: #fff;
+  }
+  .download-button{
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}

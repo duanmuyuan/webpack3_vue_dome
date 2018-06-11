@@ -1,0 +1,10 @@
+<div>
+<keep-alive>
+  <template v-if="$root.isBuy">
+      <after-view></after-view>
+    </template>
+    <template v-else>
+      <before-view></before-view>
+    </template>
+</keep-alive>
+</div>

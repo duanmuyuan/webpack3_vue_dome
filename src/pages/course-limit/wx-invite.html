@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="format-detection" content="telephone=no">
+  <title>邀好友 赢牛股</title>
+  <script type="text/javascript" src="https://h5.niuguwang.com/cdn/js/flexble.js"></script>
+  <script type="text/javascript">
+    /* eslint-disable */
+    // 腾讯统计
+    var _mtac = {};
+    (function() {
+      var mta = document.createElement("script");
+      mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+      mta.setAttribute("name", "MTAH5");
+      mta.setAttribute("sid", "500596128");
+
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(mta, s);
+    })();
+  </script>
+  <script type="text/javascript">
+    // growingIO
+    var _vds = _vds || [];
+    window._vds = _vds;
+    _vds.push(['setAccountId', 'b8e3914f8cbd753f']);
+    var vds = document.createElement('script');
+    vds.type = 'text/javascript';
+    vds.async = true;
+    vds.src = '//dn-growing.qbox.me/vds.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(vds, s);
+  </script>
+  <script type="text/javascript" src="//pingjs.qq.com/h5/hotclick.js?v2.0" name="mtah5hotclick" sid="500596128" hid="5acb522125eae"></script>
+</head>
+<body>
+  <div id="app" ref="apps" class="container">
+    <div class="nav-pane">
+      <template v-if="!isShare">
+        <img src="./images/wxi-banner.png" alt="">
+      </template>
+      <template v-else>
+        <img src="./images/wxi-nav.png" alt="">
+      </template>
+    </div>
+    <template v-if="!isShare">
+      <div class="txtimg-pane">
+        <img class="imgwid" src="./images/wxi-txt.png" alt="">
+        <div class="share-btn" @click="goToShare"><img src="./images/wxi-button.png" alt=""></div>
+      </div>
+      <div class="widImg">
+        <img src="./images/wxi-icon33.png" alt="">
+      </div>
+      <!-- <div class="share-btn-pane sanbtn-pane">
+        <div class="left-pane">
+          <img src="./images/wxi-1.png" alt="">
+          <div class="txt-pane">
+            <p>分享领取<br/>1天试用权限</p>
+            <button class="yellow" @click="goToShare">去分享</button>
+          </div>
+        </div>
+        <div class="right-pane">
+          <div class="item-pane">
+            <img src="./images/wxi-2.png" alt="">
+            <div class="txt-pane">
+              <p>邀请3名好友注册，<br/>延长期限至7天</p>
+              <button @click="goToShare">去邀请</button>
+            </div>
+          </div>
+          <div class="item-pane">
+            <img src="./images/wxi-3.png" alt="">
+            <div class="txt-pane">
+              <p>邀请5名好友注册， <br/>延长期限至30天</p>
+              <button @click="goToShare">去邀请</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </template>
+    <template v-else>
+      <div class="share-txt">
+        <h5>分享成功</h5>
+        <template v-if="shareCount > 2 && shareCount < 5">
+          <p>您已经成功邀请 <b>{{shareCount}}</b> 名好友助力抓涨停 <br> 涨停先知 <b>{{7}}</b> 天试用资格已获得</p>
+        </template>
+        <template v-if="shareCount > 4">
+          <p>您已经成功邀请 <b>{{shareCount}}</b> 名好友助力抓涨停 <br> 涨停先知 <b>{{30}}</b> 天试用资格已获得</p>
+        </template>
+        <template v-if="shareCount < 3">
+          <p>您已经成功邀请 <b>{{shareCount}}</b> 名好友助力抓涨停</p>
+        </template>
+        <div class="share-btn" @click="goToShare"><img src="./images/wxi-btnf.png" alt=""></div>
+        <template>
+          <p></p><p></p>
+          <div class="share-btn" @click="goToCourse"><img src="./images/wxi-button2@2x.png" alt=""></div>
+        </template>
+      </div>
+      <!-- <div class="share-btn-pane sharebtn-pane">
+        <template v-if="shareCount < 3">
+          <div class="item-pane">
+            <img src="./images/wxi-zt.png" alt="">
+            <div class="txt-pane">
+              <p>涨停先知<br/>一天试用资格已获得</p>
+              <button class="yellow" @click="goToCourse">立即使用</button>
+            </div>
+          </div>
+        </template>
+        <div class="item-pane">
+          <img src="./images/wxi-one.png" alt="">
+          <div class="txt-pane">
+            <p>邀请3名好友注册，<br/>延长期限至7天</p>
+            <button :disabled="shareCount > 2" @click="goToShare">{{shareCount > 2 ? '已完成' : '去邀请'}}</button>
+          </div>
+        </div>
+        <div class="item-pane">
+          <img src="./images/wxi-two.png" alt="">
+          <div class="txt-pane">
+            <p>邀请5名好友注册，<br/>延长期限至30天</p>
+            <button :disabled="shareCount > 4"  @click="goToShare">{{shareCount > 4 ? '已完成' : '去邀请'}}</button>
+          </div>
+        </div>
+        <template v-if="timeNum > 0">
+          <div class="time-pane">需要在<span>{{timeSpan}}</span>内完成邀请任务哦！</div>
+        </template>
+        <template v-else>
+          <div class="time-pane">很抱歉，您的邀请任务已过期！</div>
+        </template>
+        <div class="time-pane">点击上方分享按钮继续领涨停股吧</div>
+
+      </div> -->
+      <div class="widImg">
+        <img src="./images/wxi-icon22.png" alt="">
+      </div>
+    </template>
+ 
+    <div class="agreement">
+      <h6><span>活动规则</span></h6>
+      <div class="agr-item">
+        <div>1、</div>
+        <div>分享本活动页面即可免费获得价值990元的“涨停先知”1天使用权限。</div>
+      </div>
+      <div class="agr-item">
+        <div>2、</div>
+        <div>通过本活动邀请3名好友注册牛股王，享受7天使用权。</div>
+      </div>
+      <div class="agr-item">
+        <div>3、</div>
+        <div>通过本活动邀请5名好友注册牛股王，享受30天使用权。</div>
+      </div>
+      <div class="agr-item">
+        <div>4、</div>
+        <div>被邀请好友也可免费获得“涨停先知”使用权限。</div>
+      </div>
+      <div class="agr-item">
+        <div>5、</div>
+        <div>只获得1天权限的用户，起始日期从交易日开始计算。（遇节假日顺延）</div>
+      </div>
+      <div class="agr-item">
+        <div>6、</div>
+        <div>活动期限：4月9日——4月27日。</div>
+      </div>
+      <div class="agr-item">
+        <div>7、</div>
+        <div>活动最终解释权归牛股王所有。</div>
+      </div>
+    </div>
+    <mt-popup v-model="popupVisible" position="bottom">
+      <div class="line">
+        <span></span>
+        <b>分享到</b>
+      </div>
+      <div class="wx-share-img">
+        <p @click="goToWxShare(1)">
+          <img src="./images/wx.png" alt="">
+          <span>微信</span>
+        </p>
+        <p @click="goToWxShare(2)">
+          <img src="./images/pyq.png" alt="">
+          <span>朋友圈</span>
+        </p>
+      </div>
+    </mt-popup>
+  </div>
+</body>
+</html>

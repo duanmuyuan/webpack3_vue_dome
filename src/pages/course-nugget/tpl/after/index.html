@@ -1,0 +1,67 @@
+<div class="container afterPane">
+  <div class="contPane">
+    <header class="header">
+      <h1 class="title">{{articleData.title}}</h1>
+      <address><time class="fontgray">{{articleData.publishtime}}</time> &nbsp; <span class="fontblue">{{articleData.author}}</span></address>
+      <article>
+        <p>热点新闻事件驱动，自动更新股票池，带你抓金股。<br/>每个交易日早7点，准时推送。</p>
+      </article>
+    </header>
+    <section class="content">
+      <h4 class="title fontred">早盘机会</h4>
+      <article class="cont">
+        <p v-html="articleData.content"></p>
+      </article>
+      <aside v-if="articleData.market">
+        <b>市场环境</b>
+        <img :src="imgUrl[articleData.market.quotation]" alt="">
+      </aside>
+      <h4 class="title fontred">板块机会</h4>
+      <template v-for="(item,index) in articleData.plates">
+        <article class="cont item-cont">
+          <h6><span class="fontorange">{{item.name}}</span><br/>{{item.reason}}<br/>
+            <template v-if="item.stocks.length">相关个股： </template>
+            <template v-if="item.stocks" v-for="(itm,idx) in item.stocks">
+              <template v-if="idx > 0">、</template>
+              <span class="fontblue" @click="toQuote(itm)">{{itm.stockname}}</span>
+            </template>
+          </h6>
+        </article>
+      </template>
+      <h4 class="title fontred">{{stockPool}}</h4>
+      <table>
+        <thead>
+          <tr><th>股票</th><th>最新价</th><th>{{fiveResult ? '5日最佳收益' : '涨跌幅'}}</th></tr>
+        </thead>
+        <tbody>
+          <template v-if="stockList && stockList.length">
+            <tr v-for="(item,index) in stockList">
+              <td><span>{{item.stockName}}</span><small class="fontgray">{{item.tradingCode}}</small></td>
+              <td><b>{{item.nowPirce}}</b></td><td><b :class="className(item.fiveResult || item.upDown)">{{item.fiveResult || item.upDown}}</b></td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr class="trs"><td colspan="3">
+              <img src="./../../images/nostockIcon@2x.png" alt="">
+              <span>今日暂无股票</span>
+            </td></tr>
+          </template>
+        </tbody>
+      </table>
+      <article class="agment">
+        <p class="fontred" v-if="riskTip">个股风险提示：{{riskTip}}</p>
+        <p class="fontred" v-if="summaryTip">总结点评提示：{{summaryTip}}</p>
+      </article>
+    </section>
+    <footer>
+      <p class="fontgray">股票池筛选结果均来源于市场公开数据，根据量化模型自动计算得出，仅供投资者进行参考，不作为投资依据。</p>
+      <p class="fontgray">本页面内容及产品服务均为上海海能证券投资顾问有限公司（业务资格许可证号：zx0098）提供。</p>
+      <div class="lookOver" @click="lookOver"><span>查看往期</span><img src="./../../images/more@2x.png" alt=""></div>
+    </footer>
+    <div class="bind-pane" @click="bindClick" v-if="showBtn"><img src="./../../images/xi-wx.png" alt=""></div>
+  </div>
+  <div class="btnAfter btnPane" @click="buyClick" v-if="showBtn">
+      <h6>立即续订</h6>
+      <p>{{$root.validity}}</p>
+    </div>
+</div>

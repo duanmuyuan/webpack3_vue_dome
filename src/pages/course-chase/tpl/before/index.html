@@ -1,0 +1,28 @@
+<div class="container beforePane">
+  <div class="contPane">
+    <div class="imgpane">
+      <img src="./../../images/image12@2x.png" alt="">
+      <img src="./../../images/image21@2x.png" alt="">
+      <img src="./../../images/image31@2x.png" alt="">
+      <img src="./../../images/image41@2x.png" alt="">
+      <img @click="bindClick" src="./../../images/lie-wx.png" alt="">
+      <div class="buybtn" @click="buyClick"></div>
+    </div>
+    <div class="arg-pane">
+      <div class="tel-pane border-ios">
+        <div class="tel-items">
+          <div class="tel-name">客服电话</div>
+          <div class="tel-num">021-2509-9066</div>
+          <div class="tel-btn" @click="telPhone('021-2509-9066')">拨打</div>
+        </div>
+      </div>
+      <div class="agr-p">
+        <p>风险提示：历史回测数据不代表未来趋势；本产品利用市场公开数据经大数据智能分析运算，相关结论仅供参考，不构成投资建议，据此操作，盈亏自负；技术指标存在客观局限性，不同历史时期市场环境下表现有差异，不具备普适性；股市有风险，投资需谨慎。</p>
+        <p>本页面内容及产品服务均为上海海能证券投资顾问有限公司（业务资格许可证号：zx0098）提供。</p>
+      </div>
+    </div>
+  </div>
+  <div class="btnBefore btnPane" v-if="showBtn">
+    <img @click="buyClick" src="./../../images/jbtn@2x.png" alt="">
+  </div>
+</div>

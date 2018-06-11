@@ -1,0 +1,444 @@
+@import '../../lib/reset.css';
+
+$browser-default-font-size: 18.75px !default;
+/*
+	px 转换 rem
+*/
+@function pxToRem($px) {
+  //$px为需要转换的字号
+  @return $px / $browser-default-font-size * .5rem;
+}
+
+@media(-webkit-min-device-pixel-ratio: 2) {
+  .border-ios {
+    border-width: 0.5px !important;
+  }
+}
+
+.fontred {
+  color: rgb(255,76, 81) !important;
+}
+.fontgreen {
+  color: rgb(34, 187, 126) !important;
+}
+
+
+#app {
+  // display: none;
+  margin: 0 auto;
+  max-width: 540px;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hide {
+  display: none !important;
+}
+
+.container-pane {
+  background-color: #FEC631;
+  .nav-pane {
+    width: 100%;
+    position: relative;
+    img {
+      display: block;
+      width: 100%;
+    }
+    p {
+      width: 100%;
+      position: absolute;
+      bottom: pxToRem(30px);
+      font-size: pxToRem(12px);
+      color: #D44C16;
+      text-align: center;
+    }
+  }
+  .agreement {
+    width: 100%;
+    padding: pxToRem(30px) pxToRem(15px);
+    color: #D44C16;
+    font-size: pxToRem(14px);
+    h6 {
+      padding: pxToRem(15px);
+      text-align: center;
+      font-size: pxToRem(17px);
+      line-height: pxToRem(20px);
+      span {
+        &::after, &::before {
+          content: "";
+          width: pxToRem(6px);
+          height: pxToRem(6px);
+          background-color: #D44C16;
+          display: inline-block;
+          border-radius: 50%;
+          margin: 0 pxToRem(15px);
+          position: relative;
+          top: pxToRem(-3px);
+        }
+      }
+    }
+    .agr-item {
+      display: flex;
+      line-height: 1.6;
+    }
+  }
+  .login-phone {
+    width: pxToRem(308px);
+    margin: 0 auto;
+    .marp {
+      min-height: pxToRem(34px);
+      margin-bottom: pxToRem(10px);
+      background-color: #FEC631;
+      font-size: pxToRem(14px);
+      display: block;
+      text-decoration: none !important;
+    }
+    .mint-cell-wrapper {
+      height: 100%;
+      padding: 0;
+      background: none;
+      background-color: #FEC631;
+      .mint-cell-value {
+        // background-color: #FEC631;
+        background-color: #fff;
+        .mint-field-clear {
+          padding-right: pxToRem(10px);
+        }
+        input {
+          min-height: pxToRem(34px);
+        }
+      }
+    }
+    input {
+      width: 100%;
+      min-height: pxToRem(34px);
+      padding: 0 pxToRem(15px);
+      font-size: pxToRem(14px);
+    }
+    .mint-field-other {
+      height: 100%;
+      background-color: #FEC631;
+    }
+    .btnCode {
+      width: pxToRem(100px);
+      min-height: pxToRem(34px);
+      button {
+        width: pxToRem(90px);
+        min-height: pxToRem(34px);
+        color: #fd5a44;
+        font-size: pxToRem(12px);
+        border: 1px solid #fd5a44;
+        background-color: #FEC631;
+        float: right;
+        &.active {
+          background-color: #fd5a44;
+          color: #fff;
+        }
+      }
+    }
+    p.btnLogin {
+      padding-top: pxToRem(20px);
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    p.prompt {
+      width: 100%;
+      padding: pxToRem(12px) 0 pxToRem(30px) 0;
+      line-height: 1.6;
+      font-size: pxToRem(12px);
+      text-align: center;
+      color: #ea9325;
+      a {
+        color: #fd5a44;
+      }
+    }
+  }
+  .step-pane {
+    width: pxToRem(354px);
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: pxToRem(5px);
+    h4 {
+      padding-top: pxToRem(20px);
+      line-height: 1.6;
+      font-size: pxToRem(17px);
+      color: #59493F;
+      text-align: center;
+    }
+    h6 {
+      color: #FF6F03;
+      font-size: pxToRem(13px);
+      text-align: center;
+      line-height: 1.6;
+      padding-bottom: pxToRem(30px);
+    }
+    .time-pane {
+      text-align: center;
+      height: pxToRem(42px);
+      width: 100%;
+      border-top: 1px solid #E8DDDA;
+      font-size: pxToRem(13px);
+      color: #59493F;
+      line-height: pxToRem(42px);
+      span {
+        color: #fd5a44;
+      }
+    }
+    .step-item {
+      width: pxToRem(270px);
+      margin: 0 auto;
+      .item {
+        display: flex;
+        align-items: center;
+        padding-bottom: pxToRem(24px);
+        position: relative;
+        &:last-child {
+          &:after{
+            display: none;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: pxToRem(1px);
+          height: pxToRem(16px);
+          background: #3B87FE;
+          bottom: pxToRem(4px);
+          left: pxToRem(12px);
+        }
+        .num-item {
+          width: pxToRem(25px);
+          height: pxToRem(25px);
+          text-align: center;
+          line-height: pxToRem(25px);
+          font-size: pxToRem(16px);
+          font-weight: 600;
+          color: #fff;
+          background: linear-gradient(to right, #32C6FE, #3E73FD);
+          overflow: hidden;
+          border-radius: 50%;
+        }
+        p {
+          padding-left: pxToRem(18px);
+          font-size: pxToRem(14px);
+          color: #59493F;
+        }
+      }
+    }
+  }
+  .bg-tspt {
+    background-color: transparent !important;
+  }
+  .mark-pane {
+    width: pxToRem(341px);
+    height: pxToRem(260px);
+    background-image: url('./images/wxs-mbg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    p {
+      padding-top: pxToRem(110px);
+      padding-bottom: pxToRem(45px);
+      text-align: center;
+      line-height: 1.6;
+      color: #FCEDE8;
+      font-size: pxToRem(16px);
+    }
+    .btnpane {
+      display: flex;
+      justify-content: space-between;
+      width: pxToRem(307px);
+      margin: 0 auto;
+      div {
+        text-align: center;
+        font-size: pxToRem(14px);
+        color: #BFBFBF;
+        line-height: pxToRem(34px);
+        width: pxToRem(135px);
+        height: pxToRem(38px);
+        background-image: url('./images/wxs-mbtng.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        &.confirm {
+          color: #6B0C2A;
+        }
+      }
+    }
+  }
+}
+
+.afetrCont {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.container-after {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: pxToRem(13px);
+  color: #9BA8B9;
+  .header {
+    width: 100%;
+    height: pxToRem(210px);
+    background-image: url('./images/wxs-bg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    .hd-title {
+      height: pxToRem(36px);
+      text-align: center;
+      color: #fff;
+      line-height: pxToRem(36px);
+      font-size: pxToRem(12px);
+      span {
+        padding-left: pxToRem(35px);
+      }
+    }
+    .hd-cont {
+      width: pxToRem(348px);
+      height: pxToRem(168px);
+      overflow: hidden;
+      border-radius: pxToRem(5px);
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 5px 10px #999;
+      .hd-top {
+        display: flex;
+        padding: pxToRem(20px) 0;
+        text-align: center;
+        dl {
+          width: 50%;
+          dt {
+            font-size: pxToRem(31px);
+            line-height: 1.6;
+            color: #2A4159;
+            font-weight: 600;
+          }
+        }
+      }
+      .hd-bom {
+        padding: 0 pxToRem(20px);
+        p {
+          line-height: 1.8;
+          padding-left: pxToRem(12px);
+          position: relative;
+          &::before {
+            content: "";
+            width: pxToRem(4px);
+            height: pxToRem(4px);
+            overflow: hidden;
+            border-radius: 50%;
+            background-color: #8997A5;
+            position: absolute;
+            top: pxToRem(8px);
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+  .content {
+    .title-pane {
+      margin: pxToRem(20px) 0;
+      height: pxToRem(18px);
+      position: relative;
+      line-height: pxToRem(18px);
+      &::before {
+        content: "";
+        width: pxToRem(4px);
+        height: pxToRem(14px);
+        position: absolute;
+        top: pxToRem(2px);
+        left: 0;
+        background-color: #D44C16;
+      }
+      span {
+        padding-left: pxToRem(15px);
+        font-size: pxToRem(14px);
+        color: #2A4159;
+      }
+    }
+  }
+  .item-cont {
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    padding: pxToRem(15px);
+    & > div {
+      width: 50%;
+    }
+    .item {
+      .stock {
+        line-height: pxToRem(20px);
+        b {
+          color: #2A4159;
+          font-size: pxToRem(18px);
+        }
+        span {
+          padding-left: pxToRem(15px);
+        }
+      }
+      .profit {
+        padding-top: pxToRem(20px);
+        h4 {
+          font-size: pxToRem(29px);
+          line-height: pxToRem(30px);
+        }
+        p {
+          line-height: pxToRem(30px);
+        }
+      }
+    }
+    .price {
+      text-align: right;
+      h6 {
+        padding-top: pxToRem(6px);
+        padding-bottom: pxToRem(20px);
+        line-height: pxToRem(14px);
+        span {
+          padding-left: pxToRem(15px);
+        }
+      }
+      .pc-line {
+        display: flex;
+        line-height: pxToRem(30px);
+        p {
+          width: 50%;
+        }
+        h5 {
+          width: 50%;
+          color: #2A4159;
+          font-size: pxToRem(19px);
+        }
+      }
+    }
+  }
+  .split {
+    width: 100%;
+    height: pxToRem(10px);
+    background-color: #E8E8E8;
+  }
+  .more-btn {
+    padding: pxToRem(20px);
+    text-align: center;
+    color: #458CF5;
+    width: 100%;
+  }
+  .btn {
+    width: 100%;
+    height: pxToRem(64px);
+    background-image: url('./images/wxs-btnbg_02.png');
+    background-size: contain;
+    text-align: center;
+    color: #fff;
+    font-size: pxToRem(16px);
+    span {
+      display: block;
+      padding-top: pxToRem(15px);
+    }
+  }
+}
+

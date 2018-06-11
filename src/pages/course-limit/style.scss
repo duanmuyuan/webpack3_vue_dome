@@ -1,0 +1,595 @@
+@import '../../lib/reset.css';
+
+$browser-default-font-size: 18.75px !default;
+/*
+	px 转换 rem
+*/
+@function pxToRem($px) {
+  //$px为需要转换的字号
+  @return $px / $browser-default-font-size * .5rem;
+}
+
+@media(-webkit-min-device-pixel-ratio: 2) {
+  .border-ios {
+    border-width: 0.5px !important;
+  }
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex-just($value: flex-start) {
+  @if $value == flex-start{
+   -webkit-box-pack: start;
+   -ms-flex-pack: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-pack: end;
+   -ms-flex-pack: end;
+ }
+ @else if $value == space-between {
+   -webkit-box-pack: justify;
+   -ms-flex-pack: justify;
+ }
+ @else if $value == space-around {
+   -ms-flex-pack: distribute;
+ }
+ @else {
+   -webkit-box-pack: $value;
+   -ms-flex-pack: $value;
+ }
+ -webkit-justify-content: $value;
+ -moz-justify-content: $value;
+ justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start{
+   -webkit-box-align: start;
+   -ms-flex-align: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-align: end;
+   -ms-flex-align: end;
+ }
+ @else {
+   -webkit-box-align: $value;
+   -ms-flex-align: $value;
+ }
+ -webkit-align-items: $value;
+ -moz-align-items: $value;
+ align-items: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  $fg-boxflex: $fg;
+
+  @if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+  }
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg-boxflex;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin flex-dir($value: row) {
+  @if $value == row-reverse{
+   -webkit-box-direction: reverse;
+   -webkit-box-orient: horizontal;
+ }
+ @else if $value == column {
+   -webkit-box-direction: normal;
+   -webkit-box-orient: vertical;
+ }
+ @else if $value == column-reverse {
+   -webkit-box-direction: reverse;
+   -webkit-box-orient: vertical;
+ }
+ @else {
+   -webkit-box-direction: normal;
+   -webkit-box-orient: horizontal;
+ }
+ -webkit-flex-direction: $value;
+ -moz-flex-direction: $value;
+ -ms-flex-direction: $value;
+ flex-direction: $value;
+}
+
+/* 跳转页面动画 */  
+.slide-enter,  
+.slide_back-enter {  
+    position: absolute;  
+    width: 100%;  
+}  
+.slide-leave,  
+.slide_back-leave {  
+    position: absolute;  
+    width: 100%;  
+}  
+.slide-enter-active,  
+.slide_back-enter-active {  
+    transition: all 0.3s linear;  
+}  
+.slide-leave-active {  
+    position: absolute;  
+    transition: all 0.3s linear;  
+    transform: translate(-100%);  
+}  
+.slide-enter{  
+    transform: translateX(100%);  
+}  
+.slide_back-leave-active {  
+    position: absolute;  
+    transition: all 0.3s linear;  
+    transform: translate(100%);  
+}  
+.slide_back-enter {  
+    transform: translateX(-100%);  
+} 
+/* 跳转页面动画 */  
+
+.fontred {
+  color: rgb(255,76, 81) !important;
+}
+.fontgreen {
+  color: rgb(34, 187, 126) !important;
+}
+.fontblue {
+  color: rgb(69, 140, 245) !important;
+}
+.fontgray {
+  color: #9BA8B9 !important;
+}
+.fontorange {
+  color: rgb(255, 108, 0) !important;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.textRight {
+  text-align: right !important;
+}
+
+.textLeft {
+  text-align: left !important;
+}
+
+.textCont {
+  text-align: center !important;
+}
+
+.padrt20 {
+  padding-right: pxToRem(15px);
+}
+
+.container {
+  min-height: 100%;
+  position: relative;
+  @include flexbox;
+  @include flex-dir(column);
+  .contPane {
+    @include flex(1, null, null);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    .nav-pane {
+      width: 100%;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// 购前页面
+.afterPane {
+  background-color: #f0f2f5;
+  color: #2A4159;
+  .cont-pane {
+    .item-none {
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    .title-pane {
+      height: pxToRem(50px);
+      line-height: pxToRem(50px);
+      position: relative;
+      &::before {
+        content: "";
+        width: pxToRem(4px);
+        height: pxToRem(14px);
+        background-color: #045CF5;
+        position: absolute;
+        left: 0;
+        top: pxToRem(18px);
+        z-index: 22;
+      }
+      span {
+        float: right;
+        padding-right: pxToRem(15px);
+      }
+      b {
+        font-size: pxToRem(14px);
+        font-weight: 600;
+        padding-left: pxToRem(15px);
+      }
+    }
+    .celv-pane {
+      @include flexbox;
+      width: 100%;
+      .dlst {
+        width: 50%;
+        text-align: center;
+        position: relative;
+        .tiptop {
+          font-size: pxToRem(31px);
+          line-height: 1.5;
+          font-weight: 600;
+        }
+        &:first-child {
+          :before {
+            content: "";
+            width: pxToRem(1px);
+            height: pxToRem(45px);
+            background-color: #E2E9F1;
+            position: absolute;
+            right: 0;
+            top: pxToRem(15px);
+            z-index: 22;
+          }
+        }
+      }
+    }
+    .remind{
+      text-align: center;
+      font-size: 11px;
+      line-height: 1;
+      margin: pxToRem(10px) 0 0;
+      color: #e2e9f1;
+    }
+    .table-pane {
+      width: pxToRem(345px);
+      overflow: hidden;
+      margin: 0 auto;
+      box-sizing: border-box;
+      border-right: 1px solid #E2E9F1;
+      border-left: 1px solid #E2E9F1;
+      .item-tr {
+        height: pxToRem(47px);
+        padding: 0 pxToRem(15px);
+        border-bottom: 1px solid #E2E9F1;
+        line-height: 1.2;
+        @include flexbox;
+        @include align-items(center);
+        &:nth-child(2n+1) {
+          background-color: #F6FAFD;
+        }
+        &.item-tr-30 {
+          height: pxToRem(30px);
+          border-top: 1px solid #E2E9F1;
+        }
+        .item-25 {
+          width: 25%;
+        }
+        .item-th {
+          color: #9BA8B9;
+          font-size: pxToRem(12px);
+        }
+        h6 {
+          font-weight: 600;
+        }
+        p {
+          color: #9BA8B9;
+          time {
+            color: #2A4159;
+          }
+          span {
+            color: #FF4C51;
+          }
+        }
+      }
+    }
+    .more-pane {
+      height: pxToRem(60px);
+      line-height: pxToRem(60px);
+      text-align: center;
+      color: #458CF5;
+    }
+    margin-bottom: pxToRem(10px);
+  }
+  .tsj-pane {
+    overflow: hidden;
+    margin-bottom: pxToRem(10px);
+    height: pxToRem(44px);
+    line-height: pxToRem(44px);
+    padding: 0 pxToRem(15px);
+    font-size: pxToRem(14px);
+    p {
+      float: right;
+      color: #458CF5;
+      a {
+        text-decoration: underline;
+        color: #458CF5;
+      }
+    }
+  }
+  .tel-pane {
+    margin-top: pxToRem(10px);
+    padding: pxToRem(15px) pxToRem(15px);
+    p {
+      color: #8997A5;
+      font-size: pxToRem(12px);
+      padding-bottom: pxToRem(10px);
+    }
+    .tel-items {
+      @include flexbox;
+      @include align-items(center);
+      @include flex-just(space-between);
+      .tel-name {
+        width: pxToRem(130px);
+        color: #333;
+        font-weight: 600;
+        font-size: pxToRem(16px);
+      }
+      .tel-num {
+        color: #458CF5;
+        font-weight: 600;
+        font-size: pxToRem(16px);
+      }
+      .tel-btn {
+        width: pxToRem(63px);
+        height: pxToRem(30px);
+        overflow: hidden;
+        border-radius: pxToRem(15px);
+        background-color: #458CF5;
+        color: #fff;
+        text-align: center;
+        font-size: pxToRem(14px);
+        line-height: pxToRem(30px);
+      }
+    }
+  }
+  .agr-pane {
+    padding: pxToRem(20px) pxToRem(15px);
+    font-size: pxToRem(11px);
+    color: #8997A5;
+    padding-bottom: pxToRem(80px);
+  }
+}
+// 购前页面
+
+
+// 购后页面
+
+// 购后页面
+
+
+// 历史股票池
+.stock-pool {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  .title {
+    width: 100%;
+    height: pxToRem(52px);
+    margin-left: pxToRem(12.5px);
+    h3 {
+      line-height: pxToRem(52px);
+      font-weight: 600;
+      font-size: pxToRem(18px);
+    }
+  }
+
+  .nav {
+    width: 100%;
+    height: pxToRem(36px);
+    padding: 0 pxToRem(12.5px);
+    border-bottom: 1px solid rgb(232, 232, 232);
+    border-top: 1px solid rgb(232, 232, 232);
+    display: flex;
+    span {
+      color: rgb(132, 142, 160);
+      font-size: pxToRem(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    span:nth-child(1) {
+      flex: 3;
+      justify-content: flex-start;
+    }
+    span:nth-child(2) {
+      flex: 2.2;
+    }
+    span:nth-child(3) {
+      flex: 2.2;
+    }
+    span:nth-child(4) {
+      flex: 2.6;
+      justify-content: flex-end;
+    }
+  }
+
+  .content {
+    width: 100%;
+    .time {
+      width: 100%;
+      height: pxToRem(22.5px);
+      line-height: pxToRem(22.5px);
+      background: rgb(249, 251, 253);
+      padding: 0 pxToRem(15px);
+      color: rgb(82, 102, 140);
+      font-size: pxToRem(11px);
+      border-bottom: 1px solid rgb(232, 232, 232);
+    }
+    .stock-data {
+      width: 100%;
+      ul {
+        width: 100%;
+        height: pxToRem(56.5px);
+        padding: 0 pxToRem(15px);
+        border-bottom: 1px solid rgb(232, 232, 232);
+        display: flex;
+        li {
+          color: rgb(42, 65, 89);
+          font-size: pxToRem(12px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: pxToRem(16.5px);
+        }
+        li:nth-child(1) {
+          flex: 3;
+          height: pxToRem(56.5px);
+          justify-content: center;
+          align-items: flex-start;
+          flex-direction: column;
+          span {
+            font-size: pxToRem(13px);
+          }
+        }
+        li:nth-child(2) {
+          flex: 2.2;
+          font-weight: bold;
+        }
+        li:nth-child(3) {
+          flex: 2.2;
+        }
+        li:nth-child(4) {
+          flex: 2.6;
+          justify-content: flex-end;
+        }
+        .col {
+          color: rgb(34, 187, 126);
+        }
+        .cols {
+          color: rgb(255, 76, 81);
+        }
+      }
+    }
+  }
+
+  .btn {
+    width: 100%;
+    height: pxToRem(72px);
+    text-align: center;
+    line-height: pxToRem(72px);
+    color: rgb(69, 140, 245);
+    font-size: pxToRem(14px);
+  }
+}
+// 历史股票池
+
+
+.btn-pane {
+  @include flexbox;
+  height: pxToRem(55px);
+  box-sizing: border-box;
+  // border-top: 1px solid #9BA8B9;
+  // overflow: hidden;
+  .sect-btn {
+    width: pxToRem(230px);
+    position: relative;
+    &.sect-hide {
+      overflow: hidden;
+    }
+    .sect-pane {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: pxToRem(230px);
+      border-right: 1px solid #9BA8B9;
+      box-sizing: border-box;
+      background: #fff;
+      &.posfix {
+        position: fixed;
+      }
+    }
+    .opt-item {
+      width: 100%;
+      height: pxToRem(55px);
+      line-height: pxToRem(55px);
+      position: relative;
+      border-top: 1px solid #9BA8B9;
+      // &.opt-itembor {
+      //   box-sizing: border-box;
+      //   border-top: 1px solid #9BA8B9;
+      // }
+      img {
+        position: absolute;
+        top: 50%;
+        right: pxToRem(15px);
+        transform: translateY(-50%);
+        width: pxToRem(11px);
+      }
+      &:active {
+        background-color: #F0F1F9;
+      }
+      b {
+        padding-left: pxToRem(15px);
+        padding-right: pxToRem(10px);
+        font-size: pxToRem(20px);
+        color: #0B2347;
+        font-weight: 600;
+      }
+      span {
+        color: #0B2347;
+        font-size: pxToRem(14px);
+      }
+    }
+  }
+}
+
+.afterbtn {
+  width: 100%;
+  height: pxToRem(84px);
+  background-image: url('./images/btn-bg@2x.png');
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  .buy-btn {
+    box-sizing: border-box;
+    color: #fff;
+    font-size: pxToRem(21px);
+    text-align: center;
+    font-weight: 600;
+    width: pxToRem(345px);
+    height: pxToRem(45px);
+    margin: pxToRem(20px) auto pxToRem(15px);
+    background-color: #458CF5;
+    h6 {
+      font-size: pxToRem(17px);
+      line-height: 1.4;
+      font-weight: 600;
+      padding-top: pxToRem(3px)
+    }
+    p {
+      font-size: pxToRem(11px);
+      line-height: 1.2;
+    }
+  }
+}

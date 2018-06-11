@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="format-detection" content="telephone=no">
+  <script src="../../plugins/flexible.js"></script>
+  <title>DK短线宝+</title>
+</head>
+<body>
+  <div id="app">
+    <div class="wrapper">
+      <div class="content">
+        <img src="./images/banner@2x.jpg" alt="banner" width="100%" class="banner">
+        <section class="buy-wrapper">
+          <img src="./images/dk-cover@2x.png" alt="dk-cover" width="132" height="120" class="dk-cover">
+          <div class="buy-content">
+            <h4>福利大奉送！</h4>
+            <p class="ad">DK短线宝功能全面升级</p>
+            <p class="price">
+              <span class="price-ad">
+                <span class="old-price">原价368元/月</span>
+                <span>新用户专享价</span>
+              </span>
+              <span class="price-detail">
+                <strong>36.8</strong>
+                <span>元/月</span>
+              </span>
+            </p>
+            <button class="buy-button-small" @click="toBuy">立即购买</button>
+          </div>
+        </section>
+        <img src="./images/image1@2x.jpg" alt="sec1" width="100%" class="sec1">
+        <img src="./images/image2@2x.jpg" alt="sec2" width="100%" class="sec2">
+        <img src="./images/image3@2x.jpg" alt="sec3" width="100%" class="sec3">
+        <img src="./images/image4@2x.jpg" alt="sec4" width="100%" class="sec4">
+        <img src="./images/image5@2x.jpg" alt="sec5" width="100%" class="sec5">
+        <div class="tel-content">
+          <div class="tels-tips">客服电话</div>
+          <div class="tels-no" @click="telPhone('021-25099066')">
+            021-2509-9066
+          </div>
+          <div class="tels-img" @click="telPhone('021-25099066')">
+            拨打
+          </div>
+        </div>
+        <p class="instruction">
+          风险提示：历史回测数据不代表未来趋势；本产品利用市场公开数据经大数据智能分析运算，相关结论仅供参考，不构成投资建议，据此操作，盈亏自负；技术指标存在客观局限性，不同历史时期市场环境下表现有差异，不具备普适性；股市有风险，投资需谨慎。
+        </p> 
+      </div>
+      <button v-if="isApp" class="buy-button-big" @click="toBuy">立即购买</button>
+      <img v-else src="./images/download.png" class="download-button" @click="toBuy"></img>
+    </div>
+  </div>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</body>
+</html>

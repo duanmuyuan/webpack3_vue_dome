@@ -1,0 +1,71 @@
+<div class="contPane afterPane">
+  <div class="nav-pane">
+    <img src="./../../images/ltbanner@2x.jpg" alt="">
+  </div>
+  <div class="cont-pane bg-white">
+    <div class="title-pane">
+      <h5><span>涨停先知将于每日9:30之前进行更新</span><b>策略说明</b></h5>
+    </div>
+    <div class="celv-pane">
+      <div class="dlst">
+        <div class="tiptop fontred">{{summarydto.t1limitupdisplay}}</div>
+        <div class="fontgray">T+1涨停率</div>
+      </div>
+      <div class="dlst">
+        <div class="tiptop">{{summarydto.makemoneydisplay}}</div>
+        <div class="fontgray">赚钱概率</div>
+      </div>
+    </div>
+    <p class="remind">每交易日收盘更新以上回测数据</p>
+    <div class="title-pane"><span>{{poolinfo.updatedate}}</span><b>今日先知</b></div>
+    <div class="table-pane border-ios">
+      <template v-if="stockpool && stockpool.length">
+        <div class="item-tr item-tr-30 border-ios fontgray">
+          <div class="item-th item-25">股票名称</div><div class="item-th item-25 textCont">入选价格</div>
+          <div class="item-th item-25 textCont">当前价格</div><div class="item-th item-25 textRight">当日最高收益</div>
+        </div>
+        <template v-for="(item,index) in stockpool">
+          <div class="item-tr border-ios" @click="toQuote(item)">
+            <div class="item-td item-25"><h6>{{item.stockname}}</h6><p class="fontgray">{{item.stockcode}}</p></div>
+            <div class="item-td item-25 textCont"><h6>{{item.selectedprice}}</h6></div><div class="item-td item-25 textCont"><h6>{{item.currentprice}}</h6></div>
+            <div class="item-td item-25 textRight" :class="className(item.maxupdownrate)"><h6>{{item.maxupdownrate}}</h6></div>
+          </div>
+        </template>
+      </template>
+      <template v-else>
+        <div class="item-none"><img src="./../../images/k-image@2x.png" alt=""></div>
+      </template>
+    </div>
+    <div class="title-pane"><span>{{addtime}}</span><b>昨日先知</b></div>
+    <div class="table-pane border-ios">
+      <div class="item-tr item-tr-30 border-ios fontgray">
+        <div class="item-th item-25">股票名称</div><div class="item-th item-25 textCont">入选价格</div>
+        <div class="item-th item-25 textCont">当日涨幅</div><div class="item-th item-25 textRight">T+1最高收益</div>
+      </div>
+      <template v-for="(item,index) in preupdate">
+        <div class="item-tr border-ios" @click="toQuote(item)">
+          <div class="item-td item-25"><h6>{{item.stockname}}</h6><p class="fontgray">{{item.stockcode}}</p></div>
+          <div class="item-td item-25 textCont"><h6>{{item.selectedprice}}</h6></div>
+          <div class="item-td item-25 textCont" :class="className(item.maxupdownrate)"><h6>{{item.maxupdownrate}}</h6></div>
+          <div class="item-td item-25 textRight" :class="className(item.secondmaxupdownrate)"><h6>{{item.secondmaxupdownrate}}</h6></div>
+        </div>
+      </template>
+    </div>
+    <div class="more-pane"><span @click="gotoHistory">历史股票池</span></div>
+  </div>
+  <!-- <div class="tsj-pane bg-white">
+    <p><a href="https://www.baidu.com">推送通知设置教程</a>></p>
+    <h5>没有第一时间收到推送通知？</h5>
+  </div> -->
+  <div class="tel-pane bg-white">
+    <div class="tel-items">
+      <div class="tel-name">客服电话</div>
+      <div class="tel-num">021-2509-9066</div>
+      <div class="tel-btn" @click="telPhone('021-2509-9066')">拨打</div>
+    </div>
+  </div>
+  <div class="agr-pane">
+    <p>风险提示：历史回测数据不代表未来趋势；本产品利用市场公开数据经大数据智能分析运算，相关结论仅供参考，不构成投资建议，据此操作，盈亏自负；技术指标存在客观局限性，不同历史时期市场环境下表现有差异，不具备普适性；股市有风险，投资需谨慎。</p>
+    <p>本页面内容及产品服务均为上海海能证券投资顾问有限公司（业务资格许可证号：zx0098）提供。</p>
+  </div>
+</div>

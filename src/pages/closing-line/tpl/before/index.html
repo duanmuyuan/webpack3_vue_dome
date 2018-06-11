@@ -1,0 +1,44 @@
+<div class="contPane beforePane">
+  <div class="nav-pane">
+    <img src="./../../images/ban@2x.png" alt="">
+  </div>
+  <div class="hx-pane">
+    <div class="hx-item">
+      <h6>准时推送</h6>
+      <p>每日14:30<br/>推送3只股票</p>
+    </div>
+    <div class="hx-item">
+      <h6>尽享收益</h6>
+      <p>早盘择机卖出<br/>5%止盈-3%止损</p>
+    </div>
+    <div class="hx-item">
+      <h6>多端接收</h6>
+      <p>APP毫秒级推送<br/>微信推送即将上线</p>
+    </div>
+  </div>
+  <div class="cl-pane">
+    <p>牛股王盈宽™量化团队运用最新的量化多因子策略模型，从海量历史数据中挖掘尾盘拉升金股的秘密，探寻出一条简单的短线快速获利之道。</p>
+  </div>
+  <div class="stock-pane">
+    <div class="padTop"></div>
+    <table>
+      <tr><th>入选股票</th><th>入选时间</th><th>次日最高价/获利</th></tr>
+      <template v-for="(item,index) in $root.hisData">
+        <template v-if="index<5">
+          <tr><td>{{item.stockName}}<br/>{{item.stockCode}}</td><td>{{item.selectDate}}</td><td>{{item.profitVal}}/{{item.profitRatio}}</td></tr>
+        </template>
+      </template>
+    </table>
+  </div>
+  <div class="tel-pane">
+    <div class="tel-num">
+      <h5>官方客服电话&nbsp;021-25099066</h5>
+      <p>周一到周五：&nbsp;09:00-18:00</p>
+    </div>
+    <div class="tel-btn"><button @click="telPhone('021-25099066')">拨打</button></div>
+  </div>
+  <div class="agr-pane">
+    <p>风险提示：历史回测数据不代表未来趋势；本产品利用市场公开数据经大数据智能分析运算，相关结论仅供参考，不构成投资建议，据此操作，盈亏自负；技术指标存在客观局限性，不同历史时期市场环境下表现有差异，不具备普适性；股市有风险，投资需谨慎。 </p>
+    <p>本页面内容及产品服务均为上海海能证券投资顾问有限公司（业务资格许可证号：zx0098）提供。</p>
+  </div>
+</div>

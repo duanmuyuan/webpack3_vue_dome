@@ -1,0 +1,25 @@
+$browser-default-font-size: 37.5px !default;
+
+@function pxToRem($px) {
+    @return $px / $browser-default-font-size * 1rem;
+}
+
+@media(-webkit-min-device-pixel-ratio: 2) {
+    .border-ios {
+        border-width: 0.5px !important;
+    }
+}
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+
+@mixin no-wrap {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

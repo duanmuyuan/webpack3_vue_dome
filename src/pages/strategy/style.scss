@@ -1,0 +1,235 @@
+@import '../../lib/reset.css';
+
+$browser-default-font-size: 18.75px !default;
+/*
+	px 转换 rem
+*/
+@function pxToRem($px) {
+  //$px为需要转换的字号
+  @return $px / $browser-default-font-size * .5rem;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  $fg-boxflex: $fg;
+
+  @if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+  }
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg-boxflex;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+@mixin flex-just($value: flex-start) {
+  @if $value == flex-start{
+   -webkit-box-pack: start;
+   -ms-flex-pack: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-pack: end;
+   -ms-flex-pack: end;
+ }
+ @else if $value == space-between {
+   -webkit-box-pack: justify;
+   -ms-flex-pack: justify;
+ }
+ @else if $value == space-around {
+   -ms-flex-pack: distribute;
+ }
+ @else {
+   -webkit-box-pack: $value;
+   -ms-flex-pack: $value;
+ }
+ -webkit-justify-content: $value;
+ -moz-justify-content: $value;
+ justify-content: $value;
+}
+@mixin align-items($value: stretch) {
+  @if $value == flex-start{
+   -webkit-box-align: start;
+   -ms-flex-align: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-align: end;
+   -ms-flex-align: end;
+ }
+ @else {
+   -webkit-box-align: $value;
+   -ms-flex-align: $value;
+ }
+ -webkit-align-items: $value;
+ -moz-align-items: $value;
+ align-items: $value;
+}
+
+.split-pane {
+  width: 100%;
+  height: pxToRem(6px);
+  background: rgb(244, 245, 246);
+}
+.appPage {
+  margin: 0 auto;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  font-size: pxToRem(19px);
+  background: #fff;
+
+  nav {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  section {
+    width: 100%;
+    h5.title {
+      padding-top: pxToRem(20px);
+      line-height: 1.2;
+      position: relative;
+      color: rgb(183, 139, 89);
+      font-size: pxToRem(17px);
+      padding-left: pxToRem(15px);
+      
+      &::before {
+        content: "";
+        height: pxToRem(14px);
+        width: pxToRem(3px);
+        background-color: rgb(183, 139, 89);
+        position: absolute;
+        left: 0;
+        bottom: pxToRem(3px);
+      }
+    }
+    .careful {
+      padding: 0 pxToRem(15px) pxToRem(15px) pxToRem(15px);
+      color: rgb(137, 151, 165);
+      font-size: pxToRem(11px);
+      line-height: 1.5;
+      padding-bottom: pxToRem(15px);
+      margin: 0 auto;
+    }
+    .cell-list {
+      @include flexbox;
+      padding: pxToRem(15px);
+      font-size: pxToRem(14px);
+      color: rgb(42, 65, 89);
+      position: relative;
+      .cell-img {
+        text-align: center;
+        width: pxToRem(35px);
+        img {
+          width: pxToRem(28px);
+          &.img-f {
+            width: pxToRem(24px);
+          }
+        }
+      }
+      .cell-cont {
+        padding-left: pxToRem(10px);
+        @include flex(1, null, null);
+        h6 {
+          font-size: pxToRem(16px);
+          padding-bottom: pxToRem(5px);
+        }
+        p {
+          line-height: 1.5;
+        }
+      }
+    }
+    .cell-item {
+      // @include flex-just(space-between);
+      &:last-child {
+        border: none;
+      }
+      border-bottom: pxToRem(1px) solid rgb(226, 233, 241);
+      @include align-items(center);
+      .cell-num {
+        text-align: center;
+        width: pxToRem(35px);
+        img {
+          width: pxToRem(28.5px);
+        }
+        span {
+          font-size: pxToRem(11px);
+        }
+      }
+      .cell-uimg {
+        width: pxToRem(65px);
+        text-align: center;
+        img {
+          width: pxToRem(38px);
+          height: pxToRem(38px);
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
+      .cell-uname {
+        width: pxToRem(120px);
+        span {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: inline-block;
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+        }
+      }
+      .cell-profit {
+        width: pxToRem(125px);
+        text-align: right;
+        b {
+          color: rgb(255, 76, 81);
+          font-weight: 600;
+        }
+      }
+    }
+    .agreement {
+      padding-top: pxToRem(15px);
+      font-size: pxToRem(10px);
+      text-align: center;
+      p {
+        line-height: 1.5;
+        color: rgb(191, 192, 196);
+        span {
+          color: rgb(69, 140, 245);
+        }
+      }
+    }
+    .cell-post {
+      position: absolute;
+      bottom: 0;
+      right: pxToRem(15px);
+      color: rgb(255, 76, 81);
+      b {
+        font-size: pxToRem(34px);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.pad-top0 {
+  padding-top: 0 !important;
+}
+.pad-btm0 {
+  padding-bottom: 0 !important;
+}
+
+.btn-pane {
+  width: 100%;
+  .btn {
+    width: 100%;
+  }
+}

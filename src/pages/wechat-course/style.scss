@@ -1,0 +1,97 @@
+@import '../../lib/reset.css';
+
+$browser-default-font-size: 18.75px !default;
+/*
+	px 转换 rem
+*/
+@function pxToRem($px) {
+  //$px为需要转换的字号
+  @return $px / $browser-default-font-size * .5rem;
+}
+
+@media(-webkit-min-device-pixel-ratio: 2) {
+  .border-ios {
+    border-width: 0.5px !important;
+  }
+}
+
+#app {
+  margin: 0 auto;
+  max-width: 540px;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  color: #2A4159;
+  .wxcode-pane {
+    width: pxToRem(345px);
+    margin: 0 auto pxToRem(15px);
+    background-color: #F9FBFD;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #E2E9F1;
+    img {
+      display: block;
+      width: pxToRem(105px);
+      height: pxToRem(105px);
+    }
+    .wx-pane {
+      padding: pxToRem(15px);
+      h6 {
+        font-size: pxToRem(13px);
+        line-height: 1.6;
+        border-bottom: 1px solid #E2E9F1;
+        width: pxToRem(182px);
+        padding-bottom: pxToRem(6px)
+      }
+      p {
+        font-size: pxToRem(12px);
+        padding-top: pxToRem(8px);
+      }
+    }
+  }
+  .title-pane {
+    width: pxToRem(345px);
+    padding: pxToRem(15px);
+    margin: 0 auto;
+    padding: pxToRem(15px) 0;
+    display: flex;
+    img {
+      display: block;
+      width: pxToRem(28px);
+      height: pxToRem(17px);
+      margin: pxToRem(3px) pxToRem(5px) 0 0;
+    }
+    h5 {
+      font-size: pxToRem(16px);
+      line-height: 1.5;
+      font-weight: 600;
+    }
+  }
+  .widImg {
+    margin: 0 auto;
+    padding-bottom: pxToRem(30px);
+    &.kw {
+      width: pxToRem(340px);
+    }
+    &.kwd {
+      width: pxToRem(285px);
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  .paybtn {
+    width: 100%;
+    height: pxToRem(44px);
+    line-height: pxToRem(44px);
+    text-align: center;
+    font-size: pxToRem(16px);
+    color: #F9FBFD;
+    background-color: #FF4C51;
+    font-weight: 600;
+  }
+}
+

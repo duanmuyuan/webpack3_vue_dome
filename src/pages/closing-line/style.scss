@@ -1,0 +1,521 @@
+@import '../../lib/reset.css';
+
+$browser-default-font-size: 18.75px !default;
+/*
+	px 转换 rem
+*/
+@function pxToRem($px) {
+  //$px为需要转换的字号
+  @return $px / $browser-default-font-size * .5rem;
+}
+
+@media(-webkit-min-device-pixel-ratio: 2) {
+  .border-ios {
+    border-width: 0.5px !important;
+  }
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex-just($value: flex-start) {
+  @if $value == flex-start{
+   -webkit-box-pack: start;
+   -ms-flex-pack: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-pack: end;
+   -ms-flex-pack: end;
+ }
+ @else if $value == space-between {
+   -webkit-box-pack: justify;
+   -ms-flex-pack: justify;
+ }
+ @else if $value == space-around {
+   -ms-flex-pack: distribute;
+ }
+ @else {
+   -webkit-box-pack: $value;
+   -ms-flex-pack: $value;
+ }
+ -webkit-justify-content: $value;
+ -moz-justify-content: $value;
+ justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start{
+   -webkit-box-align: start;
+   -ms-flex-align: start;
+ }
+ @else if $value == flex-end {
+   -webkit-box-align: end;
+   -ms-flex-align: end;
+ }
+ @else {
+   -webkit-box-align: $value;
+   -ms-flex-align: $value;
+ }
+ -webkit-align-items: $value;
+ -moz-align-items: $value;
+ align-items: $value;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  $fg-boxflex: $fg;
+
+  @if type-of($fg) == 'list' {
+    $fg-boxflex: nth($fg, 1);
+  }
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg-boxflex;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin flex-dir($value: row) {
+  @if $value == row-reverse{
+   -webkit-box-direction: reverse;
+   -webkit-box-orient: horizontal;
+ }
+ @else if $value == column {
+   -webkit-box-direction: normal;
+   -webkit-box-orient: vertical;
+ }
+ @else if $value == column-reverse {
+   -webkit-box-direction: reverse;
+   -webkit-box-orient: vertical;
+ }
+ @else {
+   -webkit-box-direction: normal;
+   -webkit-box-orient: horizontal;
+ }
+ -webkit-flex-direction: $value;
+ -moz-flex-direction: $value;
+ -ms-flex-direction: $value;
+ flex-direction: $value;
+}
+
+.fontred {
+  color: rgb(255,76, 81) !important;
+}
+.fontgreen {
+  color: rgb(34, 187, 126) !important;
+}
+.fontblue {
+  color: rgb(69, 140, 245) !important;
+}
+.fontgray {
+  color: rgb(137, 151, 165) !important;
+}
+.fontorange {
+  color: rgb(255, 108, 0) !important;
+}
+
+// body {
+//   display: none;
+// }
+
+.bg-white {
+  background-color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.textRight {
+  text-align: right !important;
+}
+
+.padrt20 {
+  padding-right: pxToRem(15px);
+}
+
+.container {
+  height: 100%;
+  @include flexbox;
+  @include flex-dir(column);
+  .contPane {
+    @include flex(1, null, null);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// 底部按钮样式
+.markBox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: calc(100% - 1.46667rem);
+  width: 100%;
+  // background-color: #63E3FF;
+}
+
+.btn-pane {
+  @include flexbox;
+  height: pxToRem(55px);
+  box-sizing: border-box;
+  // border-top: 1px solid #9BA8B9;
+  // overflow: hidden;
+  .sect-btn {
+    width: pxToRem(230px);
+    position: relative;
+    &.sect-hide {
+      overflow: hidden;
+    }
+    .sect-pane {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: pxToRem(230px);
+      border-right: 1px solid #9BA8B9;
+      box-sizing: border-box;
+      background: #fff;
+      &.posfix {
+        position: fixed;
+      }
+    }
+    .opt-item {
+      width: 100%;
+      height: pxToRem(55px);
+      line-height: pxToRem(55px);
+      position: relative;
+      border-top: 1px solid #9BA8B9;
+      // &.opt-itembor {
+      //   box-sizing: border-box;
+      //   border-top: 1px solid #9BA8B9;
+      // }
+      img {
+        position: absolute;
+        top: 50%;
+        right: pxToRem(15px);
+        transform: translateY(-50%);
+        width: pxToRem(11px);
+      }
+      &:active {
+        background-color: #F0F1F9;
+      }
+      b {
+        padding-left: pxToRem(15px);
+        padding-right: pxToRem(10px);
+        font-size: pxToRem(20px);
+        color: #0B2347;
+        font-weight: 600;
+      }
+      span {
+        color: #0B2347;
+        font-size: pxToRem(14px);
+      }
+    }
+  }
+  .buy-btn {
+    border-top: 1px solid #9BA8B9;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: pxToRem(21px);
+    text-align: center;
+    line-height: pxToRem(55px);
+    font-weight: 600;
+    @include flex(1, null, null);
+    background: -webkit-linear-gradient(#FFC73A, #FB932D); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(#FFC73A, #FB932D); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(#FFC73A, #FB932D); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#FFC73A, #FB932D); /* 标准的语法 */
+    h6 {
+      font-size: pxToRem(18px);
+      line-height: 1.6;
+      font-weight: 600;
+      padding-top: pxToRem(5px)
+    }
+    p {
+      font-size: pxToRem(11px);
+      line-height: 1.2;
+    }
+  }
+}
+
+// 购前页面样式
+
+.beforePane {
+  width: 100%;
+  color: #fff;
+  background-color: #131539;
+  .nav-pane {
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  .hx-pane {
+    background-image: url('./images/ct@2x.png');
+    background-size: 100% auto;
+    height: pxToRem(250px);
+    overflow: hidden;
+    padding-top: pxToRem(140px);
+    padding-left: 5%;
+    padding-right: 5%;
+    .hx-item {
+      float: left;
+      width: 33.3%;
+      text-align: center;
+      h6 {
+        font-size: pxToRem(16px);
+        font-weight: 600;
+        line-height: 1.8;
+      }
+      p {
+        font-size: pxToRem(11px);
+        line-height: 1.5;
+        a {
+          color: #63E3FF;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .cl-pane {
+    background-image: url('./images/bg1@2x.png');
+    background-size: 100% auto;
+    height: pxToRem(190px);
+    p {
+      line-height: 1.6;
+      font-size: pxToRem(14px);
+      width: pxToRem(295px);
+      margin: 0 auto;
+      padding-top: pxToRem(80px);
+    }
+  }
+  .stock-pane {
+    background-image: url('./images/bg2@2x.png');
+    background-size: 100% auto;
+    height: pxToRem(340px);
+    .padTop {
+      padding-top: pxToRem(15px);
+    }
+    table {
+      text-align: center;
+      width: pxToRem(350px);
+      margin: 0 auto;
+      th {
+        text-align: center;
+        height: pxToRem(51px);
+        font-size: pxToRem(17px);
+      }
+      td {
+        height: pxToRem(50px);
+        font-size: pxToRem(14px);
+        &:last-child{
+          font-size: pxToRem(17px);
+          color: #D02643;
+        }
+      }
+    }
+  }
+  .tel-pane {
+    @include flexbox;
+    @include align-items(center);
+    @include flex-just(space-between);
+    width: pxToRem(345px);
+    margin: 0 auto;
+    padding: pxToRem(20px) 0;
+    .tel-num {
+      h5 {
+        font-size: pxToRem(18px);
+        line-height: 1.6;
+      }
+      p {
+        font-size: pxToRem(14px);
+        line-height: 1.5;
+      }
+    }
+  }
+  .tel-btn {
+    button {
+      display: block;
+      width: pxToRem(77px);
+      height: pxToRem(41px);
+      overflow: hidden;
+      border-radius: pxToRem(22px);
+      font-size: pxToRem(18px);
+      color: #fff;
+      background-image: url('./images/lbtn@2x.png');
+      background-size: 100% 100%;
+      border: none;
+    }
+  }
+  .agr-pane {
+    width: pxToRem(345px);
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: pxToRem(11px);
+    padding-bottom: pxToRem(15px);
+  }
+}
+
+// 购前页面样式
+
+
+// 购后页面样式
+
+.afterPane {
+  width: 100%;
+  color: #2A4159;
+  background-color: #f0f2f5;
+  .nav-pane {
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  h3.title {
+    position: relative;
+    height: pxToRem(50px);
+    line-height: pxToRem(50px);
+    &::before {
+      content: "";
+      width: pxToRem(4px);
+      height: pxToRem(14px);
+      background-color: #045CF5;
+      position: absolute;
+      left: 0;
+      top: pxToRem(18px);
+    }
+    span {
+      padding: pxToRem(15px);
+      font-size: pxToRem(14px);
+    }
+  }
+  .afcont-pane {
+    .item-none {
+      img {
+        width: 100%;
+        display: block;
+      }
+    }
+    .more-pane {
+      padding: pxToRem(20px);
+      text-align: center;
+      span {
+        color: #458CF5;
+        font-size: pxToRem(14px);
+      }
+    }
+    .tb-pane {
+      width: pxToRem(345px);
+      margin: 0 auto;
+      border-right: 1px solid #E2E9F1;
+      border-left: 1px solid #E2E9F1;
+      .item-tr {
+        height: pxToRem(47px);
+        border-bottom: 1px solid #E2E9F1;
+        text-align: center;
+        line-height: 1.2;
+        @include flexbox;
+        @include align-items(center);
+        &:nth-child(2n+1) {
+          background-color: #F6FAFD;
+        }
+        .item-50 {
+          width: 50%;
+        }
+        .item-30 {
+          width: 33%;
+        }
+        .item-60 {
+          width:66%;
+        }
+        &.item-tr-30 {
+          height: pxToRem(30px);
+          border-top: 1px solid #E2E9F1;
+        }
+        .item-th {
+          color: #9BA8B9;
+          font-size: pxToRem(12px);
+        }
+        h6 {
+          font-size: pxToRem(14px);
+          font-weight: 600;
+          width: 80%;
+          margin: 0 auto;
+        }
+        p {
+          font-size: pxToRem(14px);
+          color: #9BA8B9;
+          time {
+            color: #2A4159;
+          }
+          span {
+            color: #FF4C51;
+          }
+        }
+      }
+    }
+  }
+  .tsj-pane {
+    overflow: hidden;
+    margin: pxToRem(10px) auto;
+    height: pxToRem(44px);
+    line-height: pxToRem(44px);
+    padding: 0 pxToRem(15px);
+    font-size: pxToRem(14px);
+    p {
+      float: right;
+      color: #458CF5;
+      a {
+        text-decoration: underline;
+        color: #458CF5;
+      }
+    }
+  }
+  .tel-pane {
+    margin-top: pxToRem(10px);
+    padding: pxToRem(15px) pxToRem(15px);
+    p {
+      color: #8997A5;
+      font-size: pxToRem(12px);
+      padding-bottom: pxToRem(10px);
+    }
+    .tel-items {
+      @include flexbox;
+      @include align-items(center);
+      @include flex-just(space-between);
+      .tel-name {
+        width: pxToRem(130px);
+        color: #333;
+        font-weight: 600;
+        font-size: pxToRem(16px);
+      }
+      .tel-num {
+        color: #458CF5;
+        font-weight: 600;
+        font-size: pxToRem(16px);
+      }
+      .tel-btn {
+        width: pxToRem(63px);
+        height: pxToRem(30px);
+        overflow: hidden;
+        border-radius: pxToRem(15px);
+        background-color: #458CF5;
+        color: #fff;
+        text-align: center;
+        font-size: pxToRem(14px);
+        line-height: pxToRem(30px);
+      }
+    }
+  }
+  .agr-pane {
+    padding: pxToRem(20px) pxToRem(15px);
+    font-size: pxToRem(11px);
+  }
+}
+
+// 购后页面样式
